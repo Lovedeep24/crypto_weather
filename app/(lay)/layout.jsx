@@ -13,6 +13,11 @@ export default function layout({ children }) {
           icon: <Home className="h-4 w-4 text-neutral-500 dark:text-white" />,
         },
         {
+          name: "Dashboard",
+          link: "/dashboard",
+          icon: <Home className="h-4 w-4 text-neutral-500 dark:text-white" />,
+        },
+        {
           name: "Weather",
           link: "/weather",
           icon: <User className="h-4 w-4 text-neutral-500 dark:text-white" />,
