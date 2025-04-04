@@ -1,8 +1,8 @@
 ## Setup Instructions
--- git clone https://github.com/your-username/your-repo-name.git
--- cd your-repo-name
--- npm install
--- npm run dev
+- git clone https://github.com/your-username/your-repo-name.git
+- cd your-repo-name
+- npm install
+- npm run dev
 
 
 # Real-Time Dashboard: Weather, Crypto & News
