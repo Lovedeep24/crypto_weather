@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import Weather from '@/pages/Weather'
 import React from 'react'
 
