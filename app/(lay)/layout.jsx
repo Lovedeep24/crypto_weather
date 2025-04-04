@@ -14,19 +14,15 @@ export default function layout({ children }) {
         },
         {
           name: "Weather",
-          link: "/about",
+          link: "/weather",
           icon: <User className="h-4 w-4 text-neutral-500 dark:text-white" />,
         },
         {
             name: "Crypto",
-            link: "/about",
+            link: "/crypto",
             icon: <User className="h-4 w-4 text-neutral-500 dark:text-white" />,
           },
-        {
-          name: "News",
-          link: "/contact",
-          icon: <MessageSquare className="h-4 w-4 text-neutral-500 dark:text-white" />,
-        },
+       
       ]
     
   return (

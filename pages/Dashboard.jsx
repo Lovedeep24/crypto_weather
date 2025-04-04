@@ -7,40 +7,6 @@ import { WeatherWidget } from '@/components/ui/weather-widget';
 import { cn } from "@/lib/utils";
 import { AnimatedList } from "@/components/ui/animated-list";
 export default function Dashboard() {
-  // let notifications = [
-  //   {
-  //     name: "Payment received",
-  //     description: "Magic UI",
-  //     time: "15m ago",
-  
-  //     icon: "💸",
-  //     color: "#00C9A7",
-  //   },
-  //   {
-  //     name: "User signed up",
-  //     description: "Magic UI",
-  //     time: "10m ago",
-  //     icon: "👤",
-  //     color: "#FFB800",
-  //   },
-  //   {
-  //     name: "New message",
-  //     description: "Magic UI",
-  //     time: "5m ago",
-  //     icon: "💬",
-  //     color: "#FF3D71",
-  //   },
-  //   {
-  //     name: "New event",
-  //     description: "Magic UI",
-  //     time: "2m ago",
-  //     icon: "🗞️",
-  //     color: "#1E86FF",
-  //   },
-  // ];
-  
-  // notifications = Array.from({ length: 10 }, () => notifications).flat();
-  
   const[weatherData,setWeatherData]=useState([]);
   const dispatch = useDispatch();
   const { weather, crypto,news, loading,webCrypto, error } = useSelector((state) => state.data);
@@ -122,7 +88,7 @@ export default function Dashboard() {
     </div>
      
 
-  <div className='flex flex-col w-full gap-5 items-center justify-center'>
+  <div className='flex flex-col w-full items-center justify-center'>
     <h1 className='font-semibold text-3xl'>Live Crypto Tracker</h1>
     {webCrypto && Object.keys(webCrypto).length > 0 ? (
         <div>
