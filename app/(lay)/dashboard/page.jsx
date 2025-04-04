@@ -1,4 +1,5 @@
 // import Dash from '@/pages/Dash'
+"use client"
 import Dashboard from '@/pages/Dashboard'
 import React from 'react'
 
