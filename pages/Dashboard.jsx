@@ -98,30 +98,43 @@ export default function Dashboard() {
     }
     return item.current_price.toFixed(2);
   };
+  
   return (
-    <div className=' mt-40 '>
-       <div className="flex justify-center p-8">
-    </div>
+    <div className=' mt-40 flex flex-col gap-15'>
      {loading && <div>Loading...</div>}
      {error && <div>Error: {error}</div>}
-
-     <h1 className='font-semibold text-3xl'>Weather Information</h1>
-      <div className='flex gap-3 items-center justify-center'>
-        {weatherData.length > 0 ? (
-          weatherData.map((data,index) => (
-            <div key={index} className="p-2 mb-2 rounded-md  text-black">
+      <div className='flex flex-col w-full gap-7 items-center justify-center'>
+        <h1 className='font-semibold text-3xl'>Weather Information</h1>
+          <div className='flex gap-3 items-center justify-center'>
+          {weatherData.length > 0 ? (
+            weatherData.map((data,index) => (
+              <div key={index} className="p-2 mb-2 rounded-md  text-black">
                <WeatherWidget 
                 width="16rem"
                 className="shadow-md"
                 data={data} />
             </div>
           ))
-        ) : (
-          <p>No weather data available.</p>
-        )}
-      </div>
-  
-      <h3>Crypto (API Data)</h3>
+           ) : (
+            <p>No weather data available.</p>
+          )}
+        </div>
+    </div>
+     
+
+  <div className='flex flex-col w-full gap-5 items-center justify-center'>
+    <h1 className='font-semibold text-3xl'>Live Crypto Tracker</h1>
+    {webCrypto && Object.keys(webCrypto).length > 0 ? (
+        <div>
+          {Object.entries(webCrypto).map(([key, value]) => (
+            <div key={key} className="p-2 mb-2 rounded-md text-black">
+              {/* <p>{key.toUpperCase()}: ${parseFloat(value).toFixed(2)}</p> */}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>No Real-time crypto data available, kindly Refresh</p>
+      )}
       {crypto && Array.isArray(crypto) && crypto.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
           {crypto.map((item, index) => (
@@ -141,11 +154,13 @@ export default function Dashboard() {
       ) : (
         <p>No API-based crypto data available.</p>
       )}
-
-  <h1 className='font-semibold text-3xl text-white'>Latest News</h1>  
-   <div className='flex gap-3 border-2 h-130 border-red-950 items-center justify-center'>
+  </div>
+     
+<div className='flex flex-col w-full items-center gap-5 justify-center'>  
+  <h1 className='font-semibold text-3xl'>Latest News</h1>  
+   <div className='flex gap-3 h-130 items-center justify-center'>
    {news && news.length > 0 ? (
-        <AnimatedList className="w-[80%]" >
+        <AnimatedList  >
           {news.slice(0, 5).map((item, idx) => (
             <Notification
               {...item}
@@ -158,7 +173,9 @@ export default function Dashboard() {
       ) : (
         <p>No news data available.</p>
       )}
-   </div>   
+   </div>  
+  </div>
+ 
     </div>
   );
 }
