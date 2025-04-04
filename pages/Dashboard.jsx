@@ -1,44 +1,45 @@
 "use client"
 import React, { useEffect, useState } from 'react';
+import { PricingCard } from "@/components/ui/dark-gradient-pricing"
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchData } from '@/store/slices/dataSlice';
 import { WeatherWidget } from '@/components/ui/weather-widget';
 import { cn } from "@/lib/utils";
 import { AnimatedList } from "@/components/ui/animated-list";
 export default function Dashboard() {
-  let notifications = [
-    {
-      name: "Payment received",
-      description: "Magic UI",
-      time: "15m ago",
+  // let notifications = [
+  //   {
+  //     name: "Payment received",
+  //     description: "Magic UI",
+  //     time: "15m ago",
   
-      icon: "💸",
-      color: "#00C9A7",
-    },
-    {
-      name: "User signed up",
-      description: "Magic UI",
-      time: "10m ago",
-      icon: "👤",
-      color: "#FFB800",
-    },
-    {
-      name: "New message",
-      description: "Magic UI",
-      time: "5m ago",
-      icon: "💬",
-      color: "#FF3D71",
-    },
-    {
-      name: "New event",
-      description: "Magic UI",
-      time: "2m ago",
-      icon: "🗞️",
-      color: "#1E86FF",
-    },
-  ];
+  //     icon: "💸",
+  //     color: "#00C9A7",
+  //   },
+  //   {
+  //     name: "User signed up",
+  //     description: "Magic UI",
+  //     time: "10m ago",
+  //     icon: "👤",
+  //     color: "#FFB800",
+  //   },
+  //   {
+  //     name: "New message",
+  //     description: "Magic UI",
+  //     time: "5m ago",
+  //     icon: "💬",
+  //     color: "#FF3D71",
+  //   },
+  //   {
+  //     name: "New event",
+  //     description: "Magic UI",
+  //     time: "2m ago",
+  //     icon: "🗞️",
+  //     color: "#1E86FF",
+  //   },
+  // ];
   
-  notifications = Array.from({ length: 10 }, () => notifications).flat();
+  // notifications = Array.from({ length: 10 }, () => notifications).flat();
   
   const[weatherData,setWeatherData]=useState([]);
   const dispatch = useDispatch();
@@ -91,9 +92,14 @@ export default function Dashboard() {
       </figure>
     );
   };
-  
+  const getPrice = (item) => {
+    if (webCrypto && webCrypto[item.name.toLowerCase()]) {
+      return parseFloat(webCrypto[item.name.toLowerCase()]).toFixed(2);
+    }
+    return item.current_price.toFixed(2);
+  };
   return (
-    <div className='border-2 mt-40'>
+    <div className=' mt-40 '>
        <div className="flex justify-center p-8">
     </div>
      {loading && <div>Loading...</div>}
@@ -114,68 +120,45 @@ export default function Dashboard() {
           <p>No weather data available.</p>
         )}
       </div>
-   
-
-
+  
       <h3>Crypto (API Data)</h3>
-{crypto && Array.isArray(crypto) && crypto.length > 0 ? (
-  <div>
-    {crypto.map((item, index) => (
-      <div key={index} className="p-2 mb-2 rounded-md text-black">
-        <p>{item.name} ({item.symbol.toUpperCase()}): ${item.current_price.toFixed(2)}</p>
-        <p>Market Cap: ${item.market_cap.toLocaleString()}</p>
-        <p>24h Change: {item.price_change_percentage_24h.toFixed(2)}%</p>
-      </div>
-    ))}
-  </div>
-) : (
-  <p>No API-based crypto data available.</p>
-)}
+      {crypto && Array.isArray(crypto) && crypto.length > 0 ? (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
+          {crypto.map((item, index) => (
+            <div key={index} className="p-2 mb-2 rounded-md text-black">
+              <PricingCard
+                cryptoName={item.name}
+                price={getPrice(item)}
+                benefits={[
+                  { text: `Market Cap: ${item.market_cap.toLocaleString()}` },
+                  { text: `24h Change: ${item.price_change_percentage_24h.toFixed(2)}%` },
+                  { text: "1 day data retention", checked: false },
+                ]}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>No API-based crypto data available.</p>
+      )}
 
-<h3>Crypto (WebSocket Data)</h3>
-{webCrypto && Object.keys(webCrypto).length > 0 ? (
-  <div>
-    {Object.entries(webCrypto).map(([key, value]) => (
-      <div key={key} className="p-2 mb-2 rounded-md text-black">
-        <p>{key.toUpperCase()}: ${parseFloat(value).toFixed(2)}</p>
-      </div>
-    ))}
-  </div>
-) : (
-  <p>No WebSocket-based crypto data available.</p>
-)}
-    <h1 className='font-semibold text-3xl'>Latest News</h1>  
-   <div className='border-2'>
+  <h1 className='font-semibold text-3xl text-white'>Latest News</h1>  
+   <div className='flex gap-3 border-2 h-130 border-red-950 items-center justify-center'>
    {news && news.length > 0 ? (
-        <AnimatedList className="border-2 border-red-900">
+        <AnimatedList className="w-[80%]" >
           {news.slice(0, 5).map((item, idx) => (
             <Notification
               {...item}
               key={idx}
               time= {new Date(item.pubDate).toLocaleString()}
-              description={item.description.split(" ").slice(0, 20).join(" ") + (item.description.split(" ").length > 30 ? "..." : "")}
+              // description={item.description.split(" ").slice(0, 20).join(" ") + (item.description.split(" ").length > 30 ? "..." : "")}
             />
           ))}
         </AnimatedList>
       ) : (
         <p>No news data available.</p>
       )}
-   </div>
-   
-
-
-      {/* //   news.map((item, index) => (
-      //     <div key={index} className="p-2 mb-2 rounded-md text-black">
-      //       <a target="_blank" rel="noopener noreferrer">
-      //         <h4>{item.title}</h4>
-      //       </a>
-      //       <p>{item.description}</p>
-      //       <p>Published: {new Date(item.pubDate).toLocaleString()}</p>
-      //     </div>
-      //   ))
-      // )  */}
-      
-     
+   </div>   
     </div>
   );
 }

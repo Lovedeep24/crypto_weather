@@ -30,7 +30,7 @@ export default function layout({ children }) {
       ]
     
   return (
-    <div className="h-screen border-2 border-red-800"> 
+    <div className=""> 
         <FloatingNav className={"border-2 border-blue-900"} navItems={navItems} />
         <Provider store={store}>
         <main>
