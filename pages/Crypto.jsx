@@ -13,7 +13,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchData } from "@/store/slices/dataSlice";
 import { Star } from "lucide-react";
-
+export const dynamic = "force-dynamic"; 
 export default function Crypto() {
   const dispatch = useDispatch();
   const { crypto, loading, webCrypto } = useSelector((state) => state.data);

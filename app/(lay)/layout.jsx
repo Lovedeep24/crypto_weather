@@ -27,17 +27,16 @@ export default function layout({ children }) {
             link: "/crypto",
             icon: <User className="h-4 w-4 text-neutral-500 dark:text-white" />,
           },
-       
+
       ]
-    
   return (
     <div className=""> 
         <FloatingNav className={"border-2 border-blue-900"} navItems={navItems} />
-        <Provider store={store}>
+    
         <main>
             {children}
         </main>
-        </Provider>
+      
     </div>
   )
 }
