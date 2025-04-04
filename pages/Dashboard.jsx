@@ -64,7 +64,7 @@ export default function Dashboard() {
   return (
     <div className='mt-20 flex flex-col gap-15'>
       
-      {/* Weather Section */}
+      
       <div className='flex flex-col w-full gap-7 items-center justify-center'>
         <h1 className='font-semibold text-3xl'>Weather Information</h1>
         <div className='flex gap-3 items-center justify-center flex-wrap'>
@@ -82,7 +82,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Crypto Section */}
       <div className='flex flex-col w-full gap-7 items-center justify-center'>
         <h1 className='font-semibold text-3xl'>Live Crypto Tracker</h1>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-4 w-full max-w-7xl px-4">
@@ -106,7 +105,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* News Section */}
+    
       <div className='flex flex-col w-full items-center gap-5 justify-center'>
         <h1 className='font-semibold text-3xl'>Latest News</h1>
         <div className='flex gap-3 flex-col w-full max-w-4xl'>
