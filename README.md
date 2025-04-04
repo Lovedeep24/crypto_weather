@@ -23,3 +23,5 @@ This project is a responsive, real-time dashboard built using **Next.js**, **Red
 - Tailwind CSS: For efficient and utility-first styling
 - WebSocket is used for crypto price updates to reflect changes without refresh.
 
+
+[📄 Project Report (PDF)](docs/Project_Documentation.pdf)
