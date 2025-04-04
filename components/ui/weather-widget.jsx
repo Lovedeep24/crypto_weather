@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react"
-import { useState } from "react"
+import { useState ,useEffect} from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Cloud, CloudRain, Snowflake, Loader2, MapPin, RefreshCw, Sun, Moon, CloudLightning, CloudFog as CloudMist, Thermometer } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -22,7 +22,7 @@ const mapWeatherType = condition => {
 }
 
 // Animation variants for different weather types
-const weatherAnimations = {
+const weatherAnimations= {
   // Container animation with staggered children
   container: {
     hidden: { opacity: 0 },
@@ -128,7 +128,7 @@ const weatherAnimations = {
 
 // Animation components for each weather type
 const AnimatedWeatherIcons = {
-    clear: ({
+    Clear: ({
       isDay
     }) => (
       <motion.div variants={weatherAnimations.item} className="relative">
@@ -153,7 +153,7 @@ const AnimatedWeatherIcons = {
       </motion.div>
     ),
     
-    clouds: () => (
+    Clouds: () => (
       <motion.div
         variants={weatherAnimations.item}
         className="relative"
@@ -170,7 +170,7 @@ const AnimatedWeatherIcons = {
       </motion.div>
     ),
     
-    rain: () => (
+    Rain: () => (
       <motion.div
         variants={weatherAnimations.item}
         className="relative"
@@ -191,7 +191,7 @@ const AnimatedWeatherIcons = {
       </motion.div>
     ),
     
-    snow: () => (
+    Snow: () => (
       <motion.div
         variants={weatherAnimations.item}
         className="relative"
@@ -212,7 +212,7 @@ const AnimatedWeatherIcons = {
       </motion.div>
     ),
     
-    thunderstorm: () => (
+    Thunderstorm: () => (
       <motion.div
         variants={weatherAnimations.item}
         className="relative"
@@ -228,7 +228,7 @@ const AnimatedWeatherIcons = {
       </motion.div>
     ),
     
-    mist: () => (
+    Mist: () => (
       <motion.div
         variants={weatherAnimations.item}
         className="relative"
@@ -244,7 +244,7 @@ const AnimatedWeatherIcons = {
       </motion.div>
     ),
     
-    unknown: () => (
+    Unknown: () => (
       <motion.div variants={weatherAnimations.item} aria-label="Unknown weather condition">
         <Thermometer className="h-8 w-8 text-slate-500 dark:text-slate-300" />
       </motion.div>
@@ -266,7 +266,7 @@ const getWeatherIcon = (type, isDay, animated) => {
   
   // Fallback to static icons if animations are disabled
   switch (type) {
-    case 'clear':
+    case 'Clear':
       return isDay 
         ? <Sun
         className="h-8 w-8 text-amber-400 dark:text-amber-300"
@@ -274,31 +274,31 @@ const getWeatherIcon = (type, isDay, animated) => {
         : <Moon
         className="h-8 w-8 text-slate-300 dark:text-slate-200"
         aria-label="Clear night" />;
-    case 'clouds':
+    case 'Clouds':
       return (
         <Cloud
           className="h-8 w-8 text-slate-500 dark:text-slate-300"
           aria-label="Cloudy weather" />
       );
-    case 'rain':
+    case 'Rain':
       return (
         <CloudRain
           className="h-8 w-8 text-blue-400 dark:text-blue-300"
           aria-label="Rainy weather" />
       );
-    case 'snow':
+    case 'Snow':
       return (
         <Snowflake
           className="h-8 w-8 text-blue-300 dark:text-blue-200"
           aria-label="Snowy weather" />
       );
-    case 'thunderstorm':
+    case 'Thunderstorm':
       return (
         <CloudLightning
           className="h-8 w-8 text-amber-400 dark:text-amber-300"
           aria-label="Thunderstorm weather" />
       );
-    case 'mist':
+    case 'Mist':
       return (
         <CloudMist
           className="h-8 w-8 text-slate-400 dark:text-slate-300"
@@ -315,16 +315,18 @@ const getWeatherIcon = (type, isDay, animated) => {
 export function WeatherWidget({
   width = "16rem",
   className = "",
-  animated = true
+  animated = true,
+  data
 }) {
-  const [weather, setWeather] = useState({
+  const [weatherData, setWeatherData] = useState({
     city: "New York",
     temperature: 25,
     dateTime: new Date().toLocaleString(),
     weatherType: "Clouds",
+    humidity: 60,
     isDay: true,
-  })
-
+  });
+  console.log("data reciveddddd",data.city);
   return (
     (<Card
       className={`overflow-hidden rounded-xl border-none shadow-lg bg-gradient-to-br from-background/90 to-muted/90 backdrop-blur ${className}`}
@@ -347,10 +349,15 @@ export function WeatherWidget({
               initial={animated ? "hidden" : undefined}
               animate={animated ? "show" : undefined}
               exit={{ opacity: 0 }}
-              aria-label={`Current weather in ${weather.city}`}>
+              aria-label={`Current weather in ${data.city}`}
+              >
               <div className="flex justify-between items-center mb-2">
                 <div className="text-3xl">
-                  {getWeatherIcon(weather.weatherType, weather.isDay, animated)}
+                  {getWeatherIcon(data.weather, animated)}
+                </div>
+                <div className="text-md flex gap-1 font-extralight">
+                {getWeatherIcon("Mist", animated)}
+                  {data.humidity}%
                 </div>
               </div>
               <div className="space-y-1">
@@ -360,19 +367,19 @@ export function WeatherWidget({
                   initial={animated ? { scale: 0.9, opacity: 0 } : undefined}
                   animate={animated ? { scale: 1, opacity: 1 } : undefined}
                   transition={{ type: "spring", damping: 10 }}
-                  aria-label={`Temperature: ${weather.temperature} degrees celsius`}>
-                  {weather.temperature}<span className="text-2xl">°</span>
+                  aria-label={`Temperature: ${data.temp} degrees celsius`}>
+                  {data.temp}<span className="text-2xl">°</span>
                 </motion.div>
                 <motion.div
                   variants={weatherAnimations.item}
                   className="flex items-center text-xs text-muted-foreground">
                   <MapPin size={12} className="mr-1" aria-hidden="true" />
-                  <span>{weather.city}</span>
+                  <span>{data.city}</span>
                 </motion.div>
                 <motion.div
                   variants={weatherAnimations.item}
                   className="text-xs text-muted-foreground">
-                  {weather.dateTime}
+                  {new Date(data.time * 1000).toLocaleString()}
                 </motion.div>
               </div>
             </motion.div>

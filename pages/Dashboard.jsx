@@ -31,28 +31,26 @@ export default function Dashboard() {
   return (
     <div className='border-2 mt-40'>
        <div className="flex justify-center p-8">
-      <WeatherWidget 
-        width="16rem"
-        className="shadow-md" />
     </div>
      {loading && <div>Loading...</div>}
      {error && <div>Error: {error}</div>}
-      <div>
+
+     <h1 className='font-semibold text-3xl'>Weather Information</h1>
+      <div className='flex gap-3 items-center justify-center'>
         {weatherData.length > 0 ? (
           weatherData.map((data,index) => (
             <div key={index} className="p-2 mb-2 rounded-md  text-black">
-              <p>City: {data.city}</p>
-              <p>Temperature: {data.temp}°C</p>
-              <p>Time: {new Date(data.time * 1000).toLocaleString()}</p>
-              <p>Weather: {data.weather}</p>
-              <p>Humidity: {data.humidity}%</p>
+               <WeatherWidget 
+                width="16rem"
+                className="shadow-md"
+                data={data} />
             </div>
           ))
         ) : (
           <p>No weather data available.</p>
         )}
       </div>
-      <h3>Latest News</h3>
+      <h1 className='font-semibold text-3xl'>Latest News</h1>
       {news && news.length > 0 ? (
         news.map((item, index) => (
           <div key={index} className="p-2 mb-2 rounded-md text-black">
