@@ -33,5 +33,3 @@ export function ButtonColorful({
         </Button>
     );
 }
-
-export { ButtonColorful }
