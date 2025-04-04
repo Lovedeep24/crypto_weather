@@ -22,3 +22,4 @@ This project is a responsive, real-time dashboard built using **Next.js**, **Red
 -Redux Toolkit + Saga: Handles state and async flows cleanly
 -Tailwind CSS: For efficient and utility-first styling
 -WebSocket is used for crypto price updates to reflect changes without refresh.
+
