@@ -8,7 +8,7 @@ export function ButtonColorful({
     ...props
 }) {
     return (
-        (<Button
+        <Button
             className={cn(
                 "relative h-10 px-4 overflow-hidden",
                 "bg-zinc-900 dark:bg-zinc-100",
@@ -30,7 +30,7 @@ export function ButtonColorful({
                 <span className="text-white dark:text-zinc-900">{label}</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-white/90 dark:text-zinc-900/90" />
             </div>
-        </Button>)
+        </Button>
     );
 }
 
