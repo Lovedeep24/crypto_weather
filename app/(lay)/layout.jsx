@@ -2,8 +2,6 @@
 import React from 'react'
 import { FloatingNav } from "@/components/ui/floating-navbar"
 import { Home, MessageSquare, User } from "lucide-react"
-import { Provider } from 'react-redux';
-import { store } from '../../store/store';
 
 export default function layout({ children }) {
     const navItems = [
