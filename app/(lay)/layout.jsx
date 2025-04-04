@@ -31,9 +31,9 @@ export default function layout({ children }) {
     
   return (
     <div className="h-screen border-2 border-red-800"> 
-        <FloatingNav navItems={navItems} />
+        <FloatingNav className={"border-2 border-blue-900"} navItems={navItems} />
         <Provider store={store}>
-        <main className="pt-20 fixed p-4 border-2 h-full w-full overflow-y-auto flex flex-col items-center justify-center">
+        <main>
             {children}
         </main>
         </Provider>

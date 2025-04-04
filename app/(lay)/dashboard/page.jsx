@@ -1,3 +1,4 @@
+// import Dash from '@/pages/Dash'
 import Dashboard from '@/pages/Dashboard'
 import React from 'react'
 

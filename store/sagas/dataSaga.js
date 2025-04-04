@@ -19,11 +19,16 @@ function* fetchDataSaga() {
     );
     const cryptoData = yield call(
       fetchApi,
-      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,ripple,cardano&x_cg_demo_api_key=CG-aqfsxqM7ypLK5VyDfEWfPRZF'
+      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,monero,litecoin&x_cg_demo_api_key=CG-aqfsxqM7ypLK5VyDfEWfPRZF'
+    );
+    const newsData = yield call(
+      fetchApi,
+      'https://newsdata.io/api/1/news?apikey=pub_78224e9fb4719f97ba830613a42ee0592d6eb&q=cryptocurrency&language=en'
     );
     yield put(fetchDataSuccess({
       weather: weatherData,
       crypto: cryptoData,
+      news: newsData
     }));
 
 
