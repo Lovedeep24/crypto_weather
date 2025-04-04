@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from 'react';
 import { PricingCard } from "@/components/ui/dark-gradient-pricing";
 import { useSelector, useDispatch } from 'react-redux';
@@ -120,7 +120,7 @@ export default function Dashboard() {
                   key={idx}
                   {...item}
                   time={new Date(item.pubDate).toLocaleString()}
-                  description={item.description.split(" ").slice(0, 20).join(" ") + (item.description.split(" ").length > 30 ? "..." : "")}
+                  // description={item.description.split(" ").slice(0, 20).join(" ") + (item.description.split(" ").length > 30 ? "..." : "")}
             
                 />
               ))}

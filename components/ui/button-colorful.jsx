@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
@@ -25,6 +26,7 @@ export function ButtonColorful({
                     "opacity-40 group-hover:opacity-80",
                     "blur transition-opacity duration-500"
                 )} />
+
             <div className="relative flex items-center justify-center gap-2">
                 <span className="text-white dark:text-zinc-900">{label}</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-white/90 dark:text-zinc-900/90" />

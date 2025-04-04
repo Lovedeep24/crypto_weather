@@ -1,4 +1,4 @@
-"use client";
+
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { fetchData, fetchDataSuccess, fetchDataFailure } from '../slices/dataSlice';
 

@@ -1,3 +1,4 @@
+
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { fetchDetails, fetchDetailsSuccess, fetchDetailsFailure } from '../slices/detailsSlice';
 

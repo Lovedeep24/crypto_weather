@@ -1,3 +1,4 @@
+
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import { updateCryptoData, setLoading, setError } from '../slices/dataSlice';

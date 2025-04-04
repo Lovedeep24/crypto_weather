@@ -1,4 +1,4 @@
-"use client";
+
 import { combineReducers } from '@reduxjs/toolkit';
 import dataReducer from './slices/dataSlice';
 
