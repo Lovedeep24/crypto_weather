@@ -6,8 +6,10 @@ import RotatingText from '@/components/ui/rotatingText';
 import { ButtonColorful } from "@/components/ui/button-colorful"
 import { Button } from "@/components/ui/button"
 import { LucideIcon } from "lucide-react"
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
+  const router = useRouter()
   return (
     <div className="h-screen relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center">
       <div className="absolute  h-full  bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
@@ -30,7 +32,7 @@ export default function HomePage() {
       <h1 className={cn("md:text-3xl text-xl text-white mt-5 relative z-20")}>
         Your one stop solution for all your tracking needs and daily updates
       </h1>
-     <ButtonColorful className={"mt-10"} />
+     <ButtonColorful onClick={() => router.push('/dashboard')}className={"mt-10"} />
     </div>
   );
 
