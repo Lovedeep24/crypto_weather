@@ -29,9 +29,9 @@ export default function HomePage() {
           rotationInterval={2000}
         />
         </div>
-      <h1 className={cn("md:text-3xl text-xl text-white mt-5 relative z-20")}>
-        Your one stop solution for all your tracking needs and daily updates
-      </h1>
+        <h1 className={cn("text-xl md:text-3xl text-white mt-5 relative z-20 text-center px-4 max-w-2xl mx-auto")}>
+  Your one stop solution for all your tracking needs and daily updates
+</h1>
      <ButtonColorful onClick={() => router.push('/dashboard')}className={"mt-10"} />
     </div>
   );
