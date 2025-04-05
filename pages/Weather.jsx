@@ -12,7 +12,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchData } from "@/store/slices/dataSlice";
-import { Star } from "lucide-react"; // lucide-react icons (already in shadcn)
+import { Star } from "lucide-react";
 
 export default function Weather() {
   const [weatherData, setWeatherData] = useState([]);
@@ -55,7 +55,7 @@ export default function Weather() {
       <Table className="mt-10 w-full">
         <TableHeader>
           <TableRow className="hover:bg-transparent">
-            <TableHead></TableHead> {/* For Star Column */}
+            <TableHead></TableHead>
             <TableHead>City</TableHead>
             <TableHead>Date</TableHead>
             <TableHead>Time</TableHead>

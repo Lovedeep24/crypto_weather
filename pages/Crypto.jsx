@@ -57,7 +57,7 @@ export default function Crypto() {
       <Table className="w-full overflow-x-auto">
         <TableHeader>
           <TableRow>
-            <TableHead></TableHead> {/* Star column */}
+            <TableHead></TableHead>
             <TableHead>Crypto</TableHead>
             <TableHead>Current Price (USD)</TableHead>
             <TableHead>Market Cap</TableHead>
