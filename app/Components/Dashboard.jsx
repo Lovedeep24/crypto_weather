@@ -6,17 +6,45 @@ import { fetchData } from '@/store/slices/dataSlice';
 import { WeatherWidget } from '@/components/ui/weather-widget';
 import { AnimatedList } from "@/components/ui/animated-list";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Dashboard() {
   const [weatherData, setWeatherData] = useState([]);
   const dispatch = useDispatch();
-  const { weather, crypto, news, loading, webCrypto } = useSelector((state) => state.data);
+  const { weather, crypto, news, loading, error, webCrypto } = useSelector((state) => state.data);
 
   useEffect(() => {
+    dispatch({ type: "data/fetchCryptoData" });
     dispatch(fetchData());
-    dispatch({ type: 'data/fetchCryptoData' });
   }, [dispatch]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      toast("👋 Hey! If no data displayed try refreshing browser ");
+    }, 15000); // 12 seconds
+
+    return () => clearTimeout(timer); // cleanup on unmount
+  }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      if (error) {
+        toast.error(`Dashboard error: ${error}`);
+      } 
+      else {
+        if (weather && !weather.list?.length) {
+          toast.error("Weather data not loaded! Try Refershing");
+        }
+        if (crypto && !crypto.length) {
+          toast.error("Crypto data not loaded! Try Refershing");
+        }
+        if (news && !news.length) {
+          toast.error("News data not loaded! Try Refershing");
+        }
+      }
+    }
+  }, [weather, crypto, news, loading, error]);
 
   useEffect(() => {
     if (weather?.list) {
@@ -64,7 +92,7 @@ export default function Dashboard() {
   return (
     <div className='mt-20 flex flex-col gap-15'>
       
-      
+      <Toaster richColors position="bottom-right" />
       <div className='flex flex-col w-full gap-7 items-center justify-center'>
         <h1 className='font-semibold text-3xl'>Weather Information</h1>
         <div className='flex gap-3 items-center justify-center flex-wrap'>

@@ -15,7 +15,7 @@ function* fetchDataSaga() {
 
     const weatherData = yield call(
       fetchApi,
-      'http://api.openweathermap.org/data/2.5/group?id=5128581,2643743,2968815,1850147,2147714&units=metric&appid=19bc6668b6c7e4ca5481ce26e73a1c90'
+      'https://api.openweathermap.org/data/2.5/group?id=5128581,2643743,2968815,1850147,2147714&units=metric&appid=19bc6668b6c7e4ca5481ce26e73a1c90'
     );
     const cryptoData = yield call(
       fetchApi,

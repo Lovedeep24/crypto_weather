@@ -19,10 +19,10 @@ export default function Crypto() {
   const { crypto, loading, webCrypto } = useSelector((state) => state.data);
   const [favorites, setFavorites] = useState({});
 
-  useEffect(() => {
-    dispatch(fetchData());
-    dispatch({ type: "data/fetchCryptoData" });
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchData());
+  //   dispatch({ type: "data/fetchCryptoData" });
+  // }, [dispatch]);
 
   const getPrice = (item) => {
     if (webCrypto && webCrypto[item.name.toLowerCase()]) {
