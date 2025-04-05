@@ -30,7 +30,7 @@ export default function layout({ children }) {
   return (
     <div className=""> 
         <FloatingNav className={"border-2 border-blue-900"} navItems={navItems} />
-    
+  
         <main>
             {children}
         </main>
