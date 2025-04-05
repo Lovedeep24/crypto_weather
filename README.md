@@ -1,3 +1,6 @@
+## Live Hosted Link
+https://live-tracker-one.vercel.app/
+
 ## Setup Instructions
 - git clone https://github.com/your-username/your-repo-name.git
 - cd your-repo-name
