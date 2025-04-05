@@ -1,6 +1,7 @@
 "use client";
 import React from 'react'
-const Crypto = dynamic(() => import("@/pages/Crypto"), { ssr: false });
+import dynamic from 'next/dynamic';
+const Crypto = dynamic(() => import("@/app/Components/Crypto"), { ssr: false });
 export default function page() {
   return (
     <div>

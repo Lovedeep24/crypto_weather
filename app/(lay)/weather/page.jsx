@@ -1,5 +1,6 @@
 "use client";
-const Weather = dynamic(() => import("@/pages/Weather"), { ssr: false });
+import dynamic from 'next/dynamic';
+const Weather = dynamic(() => import("@/app/Components/Weather"), { ssr: false });
 import React from 'react'
 
 export default function page() {

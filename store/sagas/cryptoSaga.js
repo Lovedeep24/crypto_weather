@@ -1,5 +1,4 @@
-
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, take } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import { updateCryptoData, setLoading, setError } from '../slices/dataSlice';
 
@@ -10,8 +9,7 @@ function createWebSocketChannel() {
     socket.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data);
-        // Emit the parsed data directly
-        emit(data);
+        emit(data); // Just emit the parsed object, e.g. { bitcoin: "64513.34" }
       } catch (error) {
         emit({ type: 'error', message: error.message });
       }
@@ -21,7 +19,6 @@ function createWebSocketChannel() {
       emit({ type: 'error', message: error.message });
     };
 
-    // Unsubscribe function
     return () => {
       socket.close();
     };
@@ -34,17 +31,13 @@ function* fetchCryptoData() {
     const channel = yield call(createWebSocketChannel);
 
     while (true) {
-      try {
-        const data = yield call(() => new Promise(channel.take));
-        if (data.type === 'error') {
-          yield put(setError(data.message));
-        } else {
-          // Update crypto data in the Redux store
-          yield put(updateCryptoData(data));
-        }
-      } catch (innerError) {
-        yield put(setError(`Data processing error: ${innerError.message}`));
+      const data = yield take(channel); // ✅ Correct usage
+
+      if (data.type === 'error') {
+        yield put(setError(data.message));
         break;
+      } else {
+        yield put(updateCryptoData(data));
       }
     }
   } catch (error) {
